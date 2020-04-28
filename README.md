@@ -15,3 +15,8 @@ The purpose of a tool is to automate tedious task of adding new prospects to you
 	5. go to the next lead
 6) Report
 7) Exit/start again
+
+Instalations:
+node ^12
+selenium-webdriver ( npm install selenium-webdriver@3 )
+chromedriver ( npm install chromedriver -g )
