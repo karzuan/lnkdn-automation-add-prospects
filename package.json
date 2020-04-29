@@ -9,6 +9,7 @@
   "author": "konstantinkuts",
   "license": "ISC",
   "dependencies": {
+    "prompts": "^2.3.2",
     "selenium-webdriver": "^3.6.0"
   }
 }
