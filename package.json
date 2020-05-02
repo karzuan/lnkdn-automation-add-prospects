@@ -8,8 +8,13 @@
   },
   "author": "konstantinkuts",
   "license": "ISC",
+  "bin": {
+    "lnkdnauto": "./bin/index.js"
+  },
   "dependencies": {
-    "prompts": "^2.3.2",
-    "selenium-webdriver": "^3.6.0"
+    "boxen": "^4.0.0",
+    "chalk": "^2.4.2",
+    "selenium-webdriver": "^3.6.0",
+    "yargs": "^13.2.4"
   }
 }
