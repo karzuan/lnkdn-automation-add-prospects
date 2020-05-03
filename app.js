@@ -1,45 +1,53 @@
 const selenium = require("selenium-webdriver");
-//const driver = new selenium.Builder().forBrowser("chrome").build();
+const By = selenium.By;
 
 
-/*
+const driver = new selenium.Builder().forBrowser("chrome").build();
+
+
+
 const url = "https://www.linkedin.com/login";
 driver.get(url);
-const By = selenium.By;
 const userName = driver.findElement(By.xpath("/html/body/div/main/div/form/div/input"));
-userName.sendKeys("username");
+userName.sendKeys("kutskonstantin@yandex.com");
 const passWord = driver.findElement(By.xpath("//*[@id='password']"));
-passWord.sendKeys("12345");
-const loginButton = driver.findElement(By.xpath('//*[@id="app__container"]/main/div[2]/form/div[3]/button'));
-loginButton.click();
-*/
+passWord.sendKeys("gQD-Jx3-sk5-gMN");
+driver.findElement(By.css('button')).submit();
 
-// show list of options
-console.log ('( 1 ) - Log In\n( 2 ) - Check the list\n( 3 ) - Specify a message\n( 4 ) - Launch a cycle\n( 5 ) - Report\n( 6 ) - Exit');
-// 
+
 //const query = process.argv.slice(2).join(' ');
 
-switch (process.argv.slice(2).join(' ')) {
-    case '1':
-      console.log('Log In.');
-      break;
-    case '2':
-      console.log('Check the list.');
-      break;
-    case '3':
-      console.log('Specify a message.');
-      break;
-    case '4':
-      console.log('Launch a cycle.');
-      break;
-    case '5':
-      console.log('Report.');
-      break;
-    case '6':
-      console.log('Exit.');
-      break;
-    default:
-      console.log('Sorry, the ' + expr + ' is not the appropriate argument.');
-  }
-  
-  console.log("Is there anything else you'd like?");
+// getting the name from title:
+//let title = driver.getTitle();
+//let leadName = title.value_.substring(0, title.value_.length - 11); // from title 'Lisa Barnett | Linkedin' cutting off " | Linkedin"
+
+
+const locators = {
+    //leadByTitle: By.xpath(`//button[@aria-label="Connect with ${leadName}"]`),
+    leadConnect: By.css('div#profile-content button'),
+    addText: By.css('textarea'),
+    sendInvite: By.xpath(`//button[@aria-label="Send invitation"]`),
+    //closeAddWindow: By.id('artdeco-modal-outlet').findElement(By.css('button')).click()
+
+}
+
+//driver.findElement(By.xpath(`//button[@aria-label="Connect with ${leadName}"]`)).click(); // spot aria-label with the name
+//driver.findElement(By.css('textarea')).sendKeys('Hello, Im Konstantin from Pinion Software. We provide outsourcing services on wide range of technologies, lets be in touch!'); // fill the textarea under Connect
+//driver.findElement(By.xpath(`//button[@aria-label="Send invitation"]`)).click();
+
+const leads = [
+    'https://www.linkedin.com/in/alex-slonimski-71692a147/',
+    'https://www.linkedin.com/in/fblin/',
+    'https://www.linkedin.com/in/zavodenko/',
+    'https://www.linkedin.com/in/glebich/',
+    'https://www.linkedin.com/in/thekonst/',
+    'https://www.linkedin.com/in/mikaeldia/'
+];
+
+leads.forEach(element => {
+    driver.get(element);
+    driver.findElement(locators.leadConnect).click();
+    driver.findElement(By.css('textarea')).sendKeys('Hello, Im Konstantin from Pinion Software. We provide outsourcing services on wide range of technologies, lets be in touch!');
+    driver.findElement(By.id('artdeco-modal-outlet')).findElement(By.css('button')).click();
+
+});
